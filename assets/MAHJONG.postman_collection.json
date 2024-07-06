@@ -1,0 +1,1222 @@
+{
+	"info": {
+		"_postman_id": "86cc4e4f-e29d-4524-9493-1ea8adf1d695",
+		"name": "MAHJONG",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "After Login",
+			"item": [
+				{
+					"name": "Game",
+					"item": [
+						{
+							"name": "Other Player API",
+							"item": [
+								{
+									"name": "Drop Card",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"player_id\": \"{{player_id}}\",\n    \"drop_card\": \"test\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}web/game/{{game_id}}/drop-card",
+											"host": [
+												"{{host}}web"
+											],
+											"path": [
+												"game",
+												"{{game_id}}",
+												"drop-card"
+											]
+										},
+										"description": "## drop_card\nrequired only if the current turn of loggedin user\nelse only player_id is required"
+									},
+									"response": [
+										{
+											"name": "Not Allowd",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"player_id\": \"{{player_id}}\",\n    \"drop_card\": \"test\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{host}}web/game/{{game_id}}/drop-card",
+													"host": [
+														"{{host}}web"
+													],
+													"path": [
+														"game",
+														"{{game_id}}",
+														"drop-card"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "73"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"49-AvsPvFHj0FQ6ChXDi/IlQWiqTeM\""
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 17 Jun 2024 06:36:00 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"success\": false,\n    \"message\": \"Not allowed\",\n    \"data\": {},\n    \"errors\": {},\n    \"code\": \"\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Pick Card",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"player_id\": \"{{player_id}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}web/game/{{game_id}}/pick-card",
+											"host": [
+												"{{host}}web"
+											],
+											"path": [
+												"game",
+												"{{game_id}}",
+												"pick-card"
+											]
+										},
+										"description": "## drop_card\nrequired only if the current turn of loggedin user\nelse only player_id is required"
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"player_id\": \"{{player_id}}\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{host}}web/game/{{game_id}}/pick-card",
+													"host": [
+														"{{host}}web"
+													],
+													"path": [
+														"game",
+														"{{game_id}}",
+														"pick-card"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "100"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"64-k1NqFW80YywyXnI+UQie/Go21mY\""
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 17 Jun 2024 06:48:36 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"success\": true,\n    \"message\": \"Card picked successfully.\",\n    \"data\": {\n        \"pick_card\": \"winds-east\"\n    },\n    \"errors\": {}\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Login Player API",
+							"item": [
+								{
+									"name": "Drop Card",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"player_id\": \"{{player_id}}\",\n    \"drop_card\": \"winds-east\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}web/game/{{game_id}}/drop-card",
+											"host": [
+												"{{host}}web"
+											],
+											"path": [
+												"game",
+												"{{game_id}}",
+												"drop-card"
+											]
+										},
+										"description": "## drop_card\nrequired only if the current turn of loggedin user\nelse only player_id is required"
+									},
+									"response": [
+										{
+											"name": "Not Allowd",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"player_id\": \"{{player_id}}\",\n    \"drop_card\": \"test\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{host}}web/game/{{game_id}}/drop-card",
+													"host": [
+														"{{host}}web"
+													],
+													"path": [
+														"game",
+														"{{game_id}}",
+														"drop-card"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "73"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"49-AvsPvFHj0FQ6ChXDi/IlQWiqTeM\""
+												},
+												{
+													"key": "Date",
+													"value": "Mon, 17 Jun 2024 06:36:00 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"success\": false,\n    \"message\": \"Not allowed\",\n    \"data\": {},\n    \"errors\": {},\n    \"code\": \"\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Pick Card",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"player_id\": \"{{player_id}}\",\n    \"pick_from\": \"rest\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}web/game/{{game_id}}/pick-card",
+											"host": [
+												"{{host}}web"
+											],
+											"path": [
+												"game",
+												"{{game_id}}",
+												"pick-card"
+											]
+										},
+										"description": "## drop_card\nrequired only if the current turn of loggedin user\nelse only player_id is required"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Start Game",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Your test name\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    if(jsonData.success){",
+											"        pm.collectionVariables.set('game_id', jsonData.data.game_id)",
+											"    }",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"random_number\": 12340\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}web/game",
+									"host": [
+										"{{host}}web"
+									],
+									"path": [
+										"game"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Invalid",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}web/game",
+											"host": [
+												"{{host}}web"
+											],
+											"path": [
+												"game"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "137"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"89-FbIgnfNiQVEzZes2G4+F0It5K6k\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 15 Jun 2024 16:34:16 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": false,\n    \"message\": \"\",\n    \"data\": {\n        \"random_number\": {\n            \"message\": \"The random number field is mandatory.\",\n            \"rule\": \"required\"\n        }\n    },\n    \"errors\": {}\n}"
+								},
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"random_number\": 12340\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}web/game",
+											"host": [
+												"{{host}}web"
+											],
+											"path": [
+												"game"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "87"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"57-PL17L3+KNcufoQAbzOjoX5SM1ww\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 15 Jun 2024 16:51:27 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"\",\n    \"data\": {\n        \"game_id\": \"666dc68fed105efb670672f9\"\n    },\n    \"errors\": {}\n}"
+								}
+							]
+						},
+						{
+							"name": "Game Detail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Your test name\", function () {",
+											"    ",
+											"    var jsonData = pm.response.json();",
+											"    if (jsonData.success) {",
+											"        ",
+											"        if (jsonData.data.is_game_completed) {",
+											"            pm.collectionVariables.set('player_id', '');",
+											"        } else {",
+											"            ",
+											"            let player_id = jsonData.data.current_turn_completed ? jsonData.data.next_player : jsonData.data.current_turn_player;",
+											"            pm.collectionVariables.set('player_id', player_id);",
+											"            if(player_id == jsonData.data.player._id){",
+											"                console.log(\"ITS YOUR TURN...\");",
+											"            }",
+											"        }",
+											"    }",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}web/game/{{game_id}}",
+									"host": [
+										"{{host}}web"
+									],
+									"path": [
+										"game",
+										"{{game_id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}web/game/{{game_id}}/next-turn",
+											"host": [
+												"{{host}}web"
+											],
+											"path": [
+												"game",
+												"{{game_id}}",
+												"next-turn"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "86"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"56-9VqXieWwsCBEkurZE9SwmXwWBR8\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 16 Jun 2024 05:01:08 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": false,\n    \"message\": \"Game not found.\",\n    \"data\": {\n        \"code\": \"invalid_id\"\n    },\n    \"errors\": {}\n}"
+								},
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}web/game/{{game_id}}",
+											"host": [
+												"{{host}}web"
+											],
+											"path": [
+												"game",
+												"{{game_id}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "2127"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"84f-T3vqBv0xtCKTGpdyKaHjQtd0IOc\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 16 Jun 2024 11:52:17 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"\",\n    \"data\": {\n        \"is_game_completed\": false,\n        \"current_turn_completed\": false,\n        \"current_turn_player\": \"666ecfaa9b5887e1f2685dc4\",\n        \"current_turn_status\": \"card_picked\",\n        \"next_player\": \"666ecfaa9b5887e1f2685dc7\",\n        \"current_player\": {\n            \"_id\": \"666ecfaa9b5887e1f2685dce\",\n            \"card_list\": [\n                \"circles-3\",\n                \"bamboos-7\",\n                \"bamboos-4\",\n                \"characters-9\",\n                \"bamboos-2\",\n                \"circles-3\",\n                \"bamboos-9\",\n                \"circles-1\",\n                \"characters-8\",\n                \"bamboos-1\",\n                \"circles-8\",\n                \"circles-7\",\n                \"bamboos-6\"\n            ],\n            \"flower_card_list\": [],\n            \"player_index\": 4\n        },\n        \"players\": [\n            {\n                \"_id\": \"666ecfaa9b5887e1f2685dc4\",\n                \"player_name\": \"78467\",\n                \"player_index\": 1\n            },\n            {\n                \"_id\": \"666ecfaa9b5887e1f2685dc7\",\n                \"player_name\": \"13197\",\n                \"player_index\": 2\n            },\n            {\n                \"_id\": \"666ecfaa9b5887e1f2685dca\",\n                \"player_name\": \"92118\",\n                \"player_index\": 3\n            },\n            {\n                \"_id\": \"666ecfaa9b5887e1f2685dce\",\n                \"player_name\": \"makavanaromik1214@gmail.com\",\n                \"player_index\": 4\n            }\n        ],\n        \"rest_card_list\": [\n            \"bamboos-1\",\n            \"bamboos-2\",\n            \"bamboos-2\",\n            \"bamboos-3\",\n            \"bamboos-3\",\n            \"bamboos-3\",\n            \"bamboos-4\",\n            \"bamboos-4\",\n            \"bamboos-5\",\n            \"bamboos-5\",\n            \"bamboos-6\",\n            \"bamboos-7\",\n            \"bamboos-7\",\n            \"bamboos-8\",\n            \"bamboos-8\",\n            \"bamboos-9\",\n            \"bamboos-9\",\n            \"characters-1\",\n            \"characters-1\",\n            \"characters-1\",\n            \"characters-1\",\n            \"characters-2\",\n            \"characters-2\",\n            \"characters-2\",\n            \"characters-3\",\n            \"characters-3\",\n            \"characters-3\",\n            \"characters-4\",\n            \"characters-4\",\n            \"characters-4\",\n            \"characters-5\",\n            \"characters-5\",\n            \"characters-5\",\n            \"characters-6\",\n            \"characters-7\",\n            \"characters-7\",\n            \"characters-7\",\n            \"characters-8\",\n            \"characters-8\",\n            \"characters-9\",\n            \"characters-9\",\n            \"characters-9\",\n            \"circles-1\",\n            \"circles-1\",\n            \"circles-1\",\n            \"circles-2\",\n            \"circles-2\",\n            \"circles-2\",\n            \"circles-3\",\n            \"circles-3\",\n            \"circles-4\",\n            \"circles-4\",\n            \"circles-5\",\n            \"circles-6\",\n            \"circles-7\",\n            \"circles-7\",\n            \"circles-7\",\n            \"circles-8\",\n            \"circles-8\",\n            \"circles-9\",\n            \"circles-9\",\n            \"circles-9\",\n            \"winds-east\",\n            \"winds-east\",\n            \"winds-south\",\n            \"winds-south\",\n            \"winds-south\",\n            \"winds-south\",\n            \"winds-west\",\n            \"winds-west\",\n            \"winds-west\",\n            \"winds-north\",\n            \"winds-north\",\n            \"winds-north\",\n            \"dragons-red\",\n            \"dragons-red\",\n            \"dragons-green\",\n            \"dragons-green\",\n            \"dragons-green\",\n            \"dragons-white\",\n            \"dragons-white\",\n            \"dragons-white\",\n            \"dragons-white\",\n            \"flowers-flower-1\",\n            \"flowers-flower-1\",\n            \"flowers-flower-1\",\n            \"flowers-flower-1\",\n            \"flowers-flower-2\",\n            \"flowers-flower-2\",\n            \"flowers-flower-2\"\n        ],\n        \"discard_card_list\": []\n    },\n    \"errors\": {}\n}"
+								},
+								{
+									"name": "Win : Game Detail",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}web/game/{{game_id}}",
+											"host": [
+												"{{host}}web"
+											],
+											"path": [
+												"game",
+												"{{game_id}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1163"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"48b-Mm9RFnecSE8130a51PxLqVXU5UI\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 17 Jun 2024 07:36:12 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"\",\n    \"data\": {\n        \"is_game_completed\": true,\n        \"win_details\": {\n            \"winner\": {\n                \"_id\": \"666fdbd1585302cd65408983\",\n                \"card_list\": [\n                    \"characters-4\",\n                    \"characters-1\",\n                    \"bamboos-5\",\n                    \"characters-3\",\n                    \"circles-5\",\n                    \"circles-6\",\n                    \"bamboos-6\",\n                    \"winds-south\",\n                    \"circles-7\",\n                    \"bamboos-7\",\n                    \"characters-2\",\n                    \"characters-5\",\n                    \"characters-6\",\n                    \"winds-south\"\n                ],\n                \"flower_card_list\": []\n            }\n        },\n        \"current_turn_completed\": false,\n        \"current_turn_player\": \"666fdbd1585302cd65408983\",\n        \"current_turn_status\": \"card_picked\",\n        \"next_player\": \"666fdbd1585302cd65408986\",\n        \"discardCard\": \"dragons-red\",\n        \"player\": {\n            \"_id\": \"666fdbd1585302cd65408983\",\n            \"card_list\": [\n                \"characters-4\",\n                \"characters-1\",\n                \"bamboos-5\",\n                \"characters-3\",\n                \"circles-5\",\n                \"circles-6\",\n                \"bamboos-6\",\n                \"winds-south\",\n                \"circles-7\",\n                \"bamboos-7\",\n                \"characters-2\",\n                \"characters-5\",\n                \"characters-6\",\n                \"winds-south\"\n            ],\n            \"flower_card_list\": [],\n            \"player_index\": 3\n        },\n        \"players\": [\n            {\n                \"_id\": \"666fdbd1585302cd6540897c\",\n                \"player_name\": \"66206\",\n                \"player_index\": 1\n            },\n            {\n                \"_id\": \"666fdbd1585302cd6540897f\",\n                \"player_name\": \"65505\",\n                \"player_index\": 2\n            },\n            {\n                \"_id\": \"666fdbd1585302cd65408983\",\n                \"player_name\": \"makavanaromik1214@gmail.com\",\n                \"player_index\": 3\n            },\n            {\n                \"_id\": \"666fdbd1585302cd65408986\",\n                \"player_name\": \"92954\",\n                \"player_index\": 4\n            }\n        ]\n    },\n    \"errors\": {}\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}web/profile",
+							"host": [
+								"{{host}}web"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unauth",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"makavanaromik1214@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}web/profile",
+									"host": [
+										"{{host}}web"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-rkBBVJYY2v1lFJmcM9J+a2c3rUo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 15 Jun 2024 07:02:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Unauthorized\",\n    \"data\": {},\n    \"errors\": {},\n    \"code\": \"\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}web/profile",
+									"host": [
+										"{{host}}web"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"58-AEchOxJJnjKu5jvhSu1Xhjr5IrI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 15 Jun 2024 15:06:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"\",\n    \"data\": {\n        \"email\": \"makavanaromik1214@gmail.com\"\n    },\n    \"errors\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Card List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}web/card-list",
+							"host": [
+								"{{host}}web"
+							],
+							"path": [
+								"card-list"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "value",
+						"value": "{{token}}",
+						"type": "string"
+					},
+					{
+						"key": "key",
+						"value": "Authorization",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    if(jsonData.success){",
+							"        pm.collectionVariables.set('token', jsonData.data.token)",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"makavanaromik1214@gmail.com\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}web/login",
+					"host": [
+						"{{host}}web"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Invalid",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}web/login",
+							"host": [
+								"{{host}}web"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "197"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"c5-Bhs9D2llWeolLlCRXrYKLbpDsCg\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 15 Jun 2024 06:54:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"\",\n    \"data\": {\n        \"email\": {\n            \"message\": \"The email field is mandatory.\",\n            \"rule\": \"required\"\n        },\n        \"password\": {\n            \"message\": \"The password field is mandatory.\",\n            \"rule\": \"required\"\n        }\n    },\n    \"errors\": {}\n}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"makavanaromik1214@gmail.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}web/login",
+							"host": [
+								"{{host}}web"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "289"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"121-LuvFAcQ2aPR81Bwgy0B+Ky5TPMg\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 15 Jun 2024 06:59:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"message\": \"\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjY2ZDNiMmI3NTRkZGMyOGZmYWYwOTYxIiwiZW1haWwiOiJtYWthdmFuYXJvbWlrMTIxNEBnbWFpbC5jb20iLCJpYXQiOjE3MTg0MzQ3NTIsImV4cCI6MTcxODUyMTE1Mn0.SEwkVxBbr7aulE2yaBJLPHN0_BYD-iSPCf1LKyI8xp8\"\n    },\n    \"errors\": {}\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:3031/",
+			"type": "default"
+		},
+		{
+			"key": "email",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "password",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "game_id",
+			"value": ""
+		},
+		{
+			"key": "player_id",
+			"value": ""
+		}
+	]
+}

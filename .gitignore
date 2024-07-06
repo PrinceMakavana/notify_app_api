@@ -1,0 +1,9 @@
+node_modules/
+build/
+
+.env*
+!*.example
+
+public/plan-images/*
+
+!public/plan-images/no-image-logo.png
