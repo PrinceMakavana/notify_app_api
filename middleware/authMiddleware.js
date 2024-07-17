@@ -2,28 +2,22 @@ const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const utils = require("../libs/utils");
 const Users = mongoose.model("Users");
+const { firebase_admin } = require("../config/firebase");
 
 module.exports = async (req, res, next) => {
     const token = req.header("Authorization");
+    
     if (!token) {
         return res.status(401).send(utils.apiResponseMessage(false, "Unauthorized"));
     }
     try {
-        const verified = jwt.verify(token, process.env.JWT_TOKEN_SECRET);
-        let user = await Users.findOne({ _id: verified.user_id });
-        if (user) {
-            req.user = user;
-            next();
-            return;
-        } else {
-            return res.status(401).send(utils.apiResponseMessage(false, "Unauthorized"));
-        }
+        // Get User Information 
+        userInfo = await firebase_admin.auth().verifyIdToken(token);
+        req.user = userInfo;
+        next();
+        return;
     } catch (error) {
-        if (error instanceof jwt.TokenExpiredError) {
-            return res.status(401).send(utils.apiResponseMessage(false, "Unauthorized"));
-        }else if(error instanceof jwt.JsonWebTokenError){
-            return res.status(401).send(utils.apiResponseMessage(false, "Unauthorized"));
-        }
-        return res.status(500).send({ status: false });
+        console.log('error', error);
+        return res.status(200).json(utils.apiResponseMessage(false, "Invalid auth token."));
     }
 }
