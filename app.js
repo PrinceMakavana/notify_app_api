@@ -16,6 +16,10 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+if (["local", "staging"].includes(process.env.NODE_ENV)) {
+  app.use(require("cors")())
+}
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

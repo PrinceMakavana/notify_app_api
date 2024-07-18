@@ -8,6 +8,8 @@ const WebGameController = require("./../controllers/web/game");
 
 let authRoutes = express.Router();
 authRoutes.get("/profile", WebAuthController.profile);
+authRoutes.get("/check-audio/:audio_id", WebAuthController.checkAudio);
+router.get("/audio/:file_name", WebAuthController.getAudio)
 
 // Find File in local
 // Check file exist in local

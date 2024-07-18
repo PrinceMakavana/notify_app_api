@@ -3,7 +3,8 @@ const { serviceAccount } = require("./firebase-config");
 
 
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
+    credential: admin.credential.cert(serviceAccount),
+    storageBucket: process.env.FIREBASE_BUCKET_URL
 });
 
 exports.firebase_admin = admin;

@@ -5,5 +5,7 @@ build/
 !*.example
 
 public/plan-images/*
+uploads/audio-files/*
 
 !public/plan-images/no-image-logo.png
+!uploads/audio-files/no-image.png

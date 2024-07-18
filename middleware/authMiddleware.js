@@ -6,7 +6,6 @@ const { firebase_admin } = require("../config/firebase");
 
 module.exports = async (req, res, next) => {
     const token = req.header("Authorization");
-    
     if (!token) {
         return res.status(401).send(utils.apiResponseMessage(false, "Unauthorized"));
     }
