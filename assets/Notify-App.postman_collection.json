@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "b52a56a6-c873-43a4-aa9a-d6847420cecf",
+		"name": "Notify-App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Profile",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{firebase-token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{host}}web/profile",
+					"host": [
+						"{{host}}web"
+					],
+					"path": [
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Audio",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{firebase-token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{host}}web/check-audio/kcm8tjyRys8Gr6k5cDsL",
+					"host": [
+						"{{host}}web"
+					],
+					"path": [
+						"check-audio",
+						"kcm8tjyRys8Gr6k5cDsL"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Audio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}web/audio/4AUecP09UXfwxy4kep0vzCz35HC3_1721283295027.webm",
+					"host": [
+						"{{host}}web"
+					],
+					"path": [
+						"audio",
+						"4AUecP09UXfwxy4kep0vzCz35HC3_1721283295027.webm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get audio text",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{firebase-token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{host}}web/audio-text/StRyRoqnRMHNLuMKfeMS",
+					"host": [
+						"{{host}}web"
+					],
+					"path": [
+						"audio-text",
+						"StRyRoqnRMHNLuMKfeMS"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

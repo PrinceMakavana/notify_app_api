@@ -1,4 +1,7 @@
 const _ = require("lodash");
+const fs = require("fs");
+const { firebase_admin } = require("../config/firebase");
+const bucket = firebase_admin.storage().bucket();
 
 const CARD_TYPE_BAMBOOS = "bamboos";
 const CARD_TYPE_CIRCLES = "circles";
@@ -320,6 +323,26 @@ helpers.match2Card = (card1, card2) => {
         if ((maxCard.number - minCard.number) == 1) return { status: true, code: 'sequence' };
     }
     return { status: false };
+}
+
+helpers.getAudioFile = async (fileName) => {
+    const filePath = `${__dirname}/../uploads/audio-files/${fileName}`;
+    if (fileName && fileName.length && fs.existsSync(filePath)) {
+        return true;
+    } else if (fileName) {
+        const options = {
+            destination: filePath
+        }
+        try {
+            const firebaseDocumentPath = `audios/${fileName}`;
+            await bucket.file(firebaseDocumentPath).download(options);
+            return true;
+        } catch (error) {
+            return false;
+        }
+    } else {
+        return false;
+    }
 }
 
 module.exports = helpers;
