@@ -9,13 +9,9 @@ const Big = require('big.js');
 const helpers = require("../../libs/helper");
 const { firebase_admin } = require("../../config/firebase");
 const fs = require('fs');
-const fsPromise = require('fs/promises');
 const path = require('path');
 const sdk = require("microsoft-cognitiveservices-speech-sdk");
 const config = require("../../config");
-const ffmpeg = require('fluent-ffmpeg');
-const ffmpegPath = require('ffmpeg-static');
-const { PassThrough } = require('stream');
 const db = firebase_admin.firestore();
 const bucket = firebase_admin.storage().bucket();
 
@@ -85,7 +81,7 @@ exports.checkAudio = async (req, res) => {
     const details = req.audioDetails;
     const response = helpers.getAudioFile(details.audioStorageName)
     const baseUrl = process.env.API_BASE_URL ? process.env.API_BASE_URL : `http://localhost:3034/`
-    const audioURL = `${baseUrl}web/audio/${details.audioStorageName}}`
+    const audioURL = `${baseUrl}web/audio/${details.audioStorageName}`
     if (response) {
         return res.status(200).json(utils.apiResponse(true, '', { audioURL: audioURL }))
     } else {
