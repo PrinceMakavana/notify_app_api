@@ -80,8 +80,8 @@ exports.profile = async (req, res) => {
 exports.checkAudio = async (req, res) => {
     const details = req.audioDetails;
     const response = helpers.getAudioFile(details.audioStorageName)
-    const baseUrl = process.env.API_BASE_URL ? process.env.API_BASE_URL : `http://localhost:3034/`
-    const audioURL = `${baseUrl}web/audio/${details.audioStorageName}`
+    // const baseUrl = process.env.API_BASE_URL ? process.env.API_BASE_URL : `http://localhost:3034/`
+    const audioURL = `${config.baseURL}web/audio/${details.audioStorageName}`
     if (response) {
         return res.status(200).json(utils.apiResponse(true, '', { audioURL: audioURL }))
     } else {
@@ -126,12 +126,13 @@ exports.getAudio = async (req, res) => {
 }
 
 
-exports.getAudioText = async (req, res) => {
+exports.getAudioTextLink = async (req, res) => {
     const details = req.audioDetails;
+    const audioTextURL = `${config.portalBaseURL}shared-audio-text/${req.params.audio_id}`
     if (details.audioText && details.audioText.length) {
-        return res.status(200).json(utils.apiResponseData(true, { audioText: details.audioText }))
+        return res.status(200).json(utils.apiResponseData(true, { audioTextURL: audioTextURL }))
     } else {
-        const response = helpers.getAudioFile(details.audioStorageName);
+        const response = await helpers.getAudioFile(details.audioStorageName);
         if (response) {
             const AZURE_SPEECH_API_KEY = process.env.AZURE_SPEECH_API_KEY;
             const AZURE_SPEECH_API_REGION = process.env.AZURE_SPEECH_API_REGION;
@@ -150,7 +151,7 @@ exports.getAudioText = async (req, res) => {
                     await docRef.update({
                         audioText: text
                     })
-                    return res.status(200).json(utils.apiResponseData(true, { audioText: text }))
+                    return res.status(200).json(utils.apiResponseData(true, { audioTextURL: audioTextURL }))
                 } catch (error) {
                     return res.status(500).json(utils.apiResponseError(false, 'Something went wrong.'))
                 }
@@ -178,6 +179,38 @@ exports.getAudioText = async (req, res) => {
 
         } else {
             return res.status(500).json(utils.apiResponseError(false, 'Something went wrong.'))
+        }
+    }
+}
+
+exports.getSharedAudioDetails = async (req, res) => {
+    if (!req.query.content) {
+        return res.status(500).json(utils.apiResponseError(false, 'Something went wrong.'))
+    } else {
+        const docRef = db.collection('audios').doc(req.params.audio_id);
+        const doc = await docRef.get();
+        if (doc.exists) {
+            const data = doc.data();
+            const audioURL = `${config.baseURL}web/audio/${data.audioStorageName}`
+            if (req.query.content == 'audio') {
+                const isExist = await helpers.fileExist(data.audioStorageName);
+                const isExistInFolder = await helpers.getAudioFile(data.audioStorageName);
+                if (!isExist || !isExistInFolder) {
+                    return res.status(200).json(utils.apiResponseMessage(false, 'Document not available.', 'notFound'))
+                }
+            }
+
+            const details = {
+                audioName: data.audioCustomName,
+                duration: req.query.content == 'audio' ? data.duration : null,
+                audioText: req.query.content == 'fullText' ? data.audioText : null,
+                audioURL: req.query.content == 'audio' ? audioURL : null
+            }
+
+            return res.status(200).json(utils.apiResponseData(true, details));
+
+        } else {
+            return res.status(200).json(utils.apiResponseMessage(false, 'Document not available.', 'notFound'))
         }
     }
 }

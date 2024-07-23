@@ -10,9 +10,10 @@ const WebGameController = require("./../controllers/web/game");
 let authRoutes = express.Router();
 authRoutes.get("/profile", WebAuthController.profile);
 authRoutes.get("/check-audio/:audio_id",audioMiddleware, WebAuthController.checkAudio);
-authRoutes.get("/audio-text/:audio_id", audioMiddleware, WebAuthController.getAudioText);
+authRoutes.get("/audio-text-link/:audio_id", audioMiddleware, WebAuthController.getAudioTextLink);
 
 router.get("/audio/:file_name", WebAuthController.getAudio);
+router.get("/shared-audio/details/:audio_id", WebAuthController.getSharedAudioDetails);
 
 
 // Find File in local

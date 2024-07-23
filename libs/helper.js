@@ -345,4 +345,19 @@ helpers.getAudioFile = async (fileName) => {
     }
 }
 
+helpers.fileExist = async (fileName) => {
+    if (fileName && fileName.length) {
+        const filePath = `audios/${fileName}`
+        try {
+            const file = bucket.file(filePath);
+            const [exists] = await file.exists();
+            return exists;
+        } catch (error) {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
 module.exports = helpers;

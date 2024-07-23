@@ -3,6 +3,8 @@ let config = {
   app_code: "mahjong-api",
   db: `${process.env.MONGODB_URL}${process.env.DATABASE_NAME}`,
   dbName: process.env.DATABASE_NAME,
+  baseURL:  'http://localhost:3034/',
+  portalBaseURL: 'http://localhost:5173/',
   speechToTextAlternativeLanguages: {
     'en': ['en-AU', 'en-CA', 'en-GB', 'en-GH', 'en-HK', 'en-IE', 'en-IN', 'en-KE', 'en-NG', 'en-NZ', 'en-PH', 'en-SG', 'en-TZ', 'en-US', 'en-ZA'],
     'cn': ['wuu-CN', 'yue-CN', 'zh-CN', 'zh-CN-shandong', 'zh-CN-sichuan'],
@@ -16,7 +18,11 @@ let config = {
 };
 
 if (process.env.NODE_ENV && process.env.NODE_ENV == "staging") {
+  config.baseURL = process.env.API_BASE_URL
+  config.portalBaseURL  =process.env.FRONTEND_PORTAL_BASE_URL
 } else if (process.env.NODE_ENV && process.env.NODE_ENV == "production") {
+  config.baseURL = process.env.API_BASE_URL
+  config.portalBaseURL  =process.env.FRONTEND_PORTAL_BASE_URL
 }
 
 
