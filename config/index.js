@@ -17,10 +17,13 @@ let config = {
   }
 };
 
-if (process.env.NODE_ENV && process.env.NODE_ENV == "staging") {
+if (process.env.NODE_ENV && process.env.NODE_ENV == 'staging') {
   config.baseURL = 'https://notify-app-api.onrender.com/'
   config.portalBaseURL  = 'https://frabjous-sawine-326eea.netlify.app/'
-} else if (process.env.NODE_ENV && process.env.NODE_ENV == "production") {
+  console.log('call condition');
+  console.log('config ', config);
+  console.log('process.env ', process.env);
+} else if (process.env.NODE_ENV && process.env.NODE_ENV == 'production') {
   config.baseURL = 'https://notify-app-api.onrender.com/'
   config.portalBaseURL  = 'https://frabjous-sawine-326eea.netlify.app/'
 }
