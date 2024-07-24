@@ -79,7 +79,7 @@ exports.profile = async (req, res) => {
 
 exports.checkAudio = async (req, res) => {
     const details = req.audioDetails;
-    const response = helpers.getAudioFile(details.audioStorageName)
+    const response = await helpers.getAudioFile(details.audioStorageName)
     // const baseUrl = process.env.API_BASE_URL ? process.env.API_BASE_URL : `http://localhost:3034/`
     const audioURL = `${config.baseURL}web/audio/${details.audioStorageName}`
     if (response) {
@@ -87,42 +87,16 @@ exports.checkAudio = async (req, res) => {
     } else {
         return res.status(500).json(utils.apiResponseError(false, 'Something went wrong.'))
     }
-    // const docRef = db.collection('audios').doc(req.params.audio_id);
-    // const doc = await docRef.get();
-    // if (doc.exists) {
-    //     const data = doc.data()
-    //     if (data.userId !== req.user.uid) {
-    //         return res.status(200).json(utils.apiResponseMessage(false, 'Unauthorized', 'unauthorized'))
-    //     } else {
-    //         const destinationPath = `${__dirname}/../../uploads/audio-files/${data.audioStorageName}`;
-    //         const audioURL = `${process.env.API_BASE_URL ? process.env.API_BASE_URL : 'http://localhost:3034/'}web/audio/${path.basename(destinationPath)}`
-    //         if (fs.existsSync(destinationPath)) {
-    //             return res.status(200).json(utils.apiResponse(true, '', { audioURL: audioURL }))
-    //         } else {
-    //             const options = {
-    //                 destination: destinationPath
-    //             }
-    //             try {
-    //                 const filePath = `audios/${data.audioStorageName}`
-    //                 await bucket.file(filePath).download(options);
-    //                 return res.status(200).json(utils.apiResponse(true, '', { audioURL: audioURL }))
-    //             } catch (error) {
-    //                 return res.status(500).json(utils.apiResponseError(false, 'Something went wrong.'))
-    //             }
-    //         }
-    //     }
-    // } else {
-    //     return res.status(200).json(utils.apiResponseMessage(false, 'Document not available.', 'notFound'))
-    // }
 }
 
 exports.getAudio = async (req, res) => {
-    const filePath = path.join(__dirname, `../../uploads/audio-files/${req.params.file_name}`);
-    if (fs.existsSync(filePath)) {
+    // const filePath = path.join(__dirname, `../../uploads/audio-files/${req.params.file_name}`);
+    const filePath = `${__dirname}/../../uploads/audio-files/${req.params.file_name}`
+    // if (fs.existsSync(filePath)) {
         return res.download(filePath)
-    } else {
-        return res.status(200).json(utils.apiResponseMessage(false, 'Audio not available.'))
-    }
+    // } else {
+        // return res.status(200).json(utils.apiResponseMessage(false, 'Audio not available.'))
+    // }
 }
 
 
