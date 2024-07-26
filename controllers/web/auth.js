@@ -14,8 +14,7 @@ const sdk = require("microsoft-cognitiveservices-speech-sdk");
 const config = require("../../config");
 const db = firebase_admin.firestore();
 const bucket = firebase_admin.storage().bucket();
-
-
+const admin = require('firebase-admin');
 
 exports.login = async (req, res) => {
     try {
@@ -93,9 +92,9 @@ exports.getAudio = async (req, res) => {
     // const filePath = path.join(__dirname, `../../uploads/audio-files/${req.params.file_name}`);
     const filePath = `${__dirname}/../../uploads/audio-files/${req.params.file_name}`
     // if (fs.existsSync(filePath)) {
-        return res.download(filePath)
+    return res.download(filePath)
     // } else {
-        // return res.status(200).json(utils.apiResponseMessage(false, 'Audio not available.'))
+    // return res.status(200).json(utils.apiResponseMessage(false, 'Audio not available.'))
     // }
 }
 
@@ -187,4 +186,60 @@ exports.getSharedAudioDetails = async (req, res) => {
             return res.status(200).json(utils.apiResponseMessage(false, 'Document not available.', 'notFound'))
         }
     }
+}
+
+
+exports.addAudio = async (req, res) => {
+
+
+
+    if (!req.file) {
+        return res.status(200).json(utils.apiResponseError(false, 'Recording file is required.'))
+    }
+
+
+    try {
+        const { path: filePath, originalname, mimetype } = req.file;
+
+        if (mimetype !== 'audio/wav') {
+            return res.status(200).json(utils.apiResponseError(false, 'Invalid file.'))
+        }
+
+        let rules = {
+            "userId": ["required"],
+            "duration": ["required", 'string'],
+            "language": ["required", "in:en,cn,zh"]
+        }
+
+        let v = new niv.Validator(req.body, rules);
+        let validation = await v.check();
+
+        if (!validation) {
+            return res.send(utils.apiResponse(false, "", v.errors));
+        }
+
+        const fileName = `${req.body.userId}_${Date.now()}.wav`;
+        const destination = `audios/${fileName}`;
+        const buffer = fs.readFileSync(filePath);
+        const fileUpload = bucket.file(destination);
+        await fileUpload.save(buffer, {
+            metadata: {
+                contentType: mimetype,
+            },
+        });
+        await db.collection('audios').add({
+            userId: req.body.userId,
+            audioStorageName: fileName,
+            audioCustomName: `audio - ${Math.floor(Date.now() / 1000)}`,
+            duration: Number(req.body.duration),
+            language: req.body.language,
+            timestamp: admin.firestore.FieldValue.serverTimestamp(),
+        });
+
+        fs.unlinkSync(filePath);
+        return res.status(200).json(utils.apiResponseMessage(true, 'Recording added successfully.'))
+    } catch (error) {
+        return res.status(500).json(utils.apiResponseError(false, 'Something went wrong.'))
+    }
+
 }

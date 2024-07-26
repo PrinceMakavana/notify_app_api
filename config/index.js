@@ -19,10 +19,10 @@ let config = {
 
 if (process.env.NODE_ENV && process.env.NODE_ENV == 'staging') {
   config.baseURL = 'https://notify-app-api.onrender.com/'
-  config.portalBaseURL  = 'https://frabjous-sawine-326eea.netlify.app/'
+  config.portalBaseURL  = 'https://notify-app-2958f.web.app/'
 } else if (process.env.NODE_ENV && process.env.NODE_ENV == 'production') {
   config.baseURL = 'https://notify-app-api.onrender.com/'
-  config.portalBaseURL  = 'https://frabjous-sawine-326eea.netlify.app/'
+  config.portalBaseURL  = 'https://notify-app-2958f.web.app/'
 }
 
 
