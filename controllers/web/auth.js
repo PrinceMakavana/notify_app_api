@@ -175,6 +175,7 @@ exports.getSharedAudioDetails = async (req, res) => {
 
             const details = {
                 audioName: data.audioCustomName,
+                language: data.language,
                 duration: req.query.content == 'audio' ? data.duration : null,
                 audioText: req.query.content == 'fullText' ? data.audioText : null,
                 audioURL: req.query.content == 'audio' ? audioURL : null
